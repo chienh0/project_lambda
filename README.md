@@ -8,23 +8,10 @@ Date: 2022.07.18
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-<!-- Project logo -->
-<p align="center">
-  <img src="images/lambda.png" alt="Project Lambda"></a>
-</p>
-
 <!-- Title -->
 <div align="center">
-  <h1 style="color:blue;" align="center">Project Lambda</h1>
+  <h1 style="color:blue;" align="center">Healthcare Claims Metric Builder</h1>
 </div>
-
-
-<!-- Any shields you want to use. Bitbucket is limited in what you can use -->
-<p align="center">
-  <a href="https://bitbucket.remedypartners.com/projects/CA/repos/gcattabriga/commits">
-  <img src="https://img.shields.io/maintenance/yes/2022?style=plastic"
-  alt="Commits">
-</p>
 
 <!-- The menu links to the various readme sections. Make these whatever works for your project -->      
 <p align="center">
@@ -32,7 +19,6 @@ Date: 2022.07.18
   <a href="#test-data">Test Data</a> •  
   <a href="#code">Code</a> •
   <a href="#credits">Credits</a> •
-  <a href="#support">Support</a>
 </p>
 
 
@@ -41,8 +27,10 @@ Date: 2022.07.18
 <a name="about"></a>
 
 ## About
-
-A repo for **Project Lambda** 
+What will we do?
+   1) Build Python code that creates metrics from medical and pharmacy claims.
+   2) Deploy this code to a Lambda function
+   3) Enable access through an API Gateway
 
 <br/>
 

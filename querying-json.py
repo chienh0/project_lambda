@@ -1,5 +1,6 @@
 from collections.abc import MutableMapping
 import json
+import sys
 
 class JsonHash:
     '''
@@ -285,7 +286,10 @@ class JsonHash:
         return _results
 
 if __name__ == '__main__':
-    with open('test_data/lambda_project_dummy_data.json', 'r') as f:
+    # Parameterize code
+    data_path_parameter = sys.argv[1]
+
+    with open(data_path_parameter, 'r') as f:
         members = json.load(f)
 
     table = JsonHash(members, p_sparse=True)

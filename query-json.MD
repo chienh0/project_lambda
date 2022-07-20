@@ -90,7 +90,3 @@ The first thing that comes to mind is method chaining. Something like:
 ```
 
 This example takes a first search pass using the value `P` and a second pass using the value `99214`. The assumption is that the second query of the CPT code is acting on the _result set_ of the first query. In this way, chaining a query would search smaller and smaller result sets until we decide we're ready to extract a specific data element (`from_date`).
-
-
-
-
