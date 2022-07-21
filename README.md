@@ -1,7 +1,7 @@
 <!-- README.md -->
 <!--
 Author: Chien Ho
-Date: 2022.07.18
+Date: 2022.07.20
 *** Reference links are enclosed in brackets [ ] instead of parentheses
 *** See the bottom of this document for the declaration of the reference variables
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
@@ -10,35 +10,44 @@ Date: 2022.07.18
 
 <!-- Title -->
 <div align="center">
-  <h1 style="color:blue;" align="center">Healthcare Claims Metric Builder</h1>
+  <h1 align="center">Healthcare Claims Metric Builder</h1>
 </div>
 
 <!-- The menu links to the various readme sections. Make these whatever works for your project -->      
 <p align="center">
-  <a href="#about">About</a> •  
+  <a href="#project overview">Project Overview</a> •  
+  <a href="learning concepts">Learning Concepts</a> •  
   <a href="#test-data">Test Data</a> •  
   <a href="#code">Code</a> •
   <a href="#credits">Credits</a> •
 </p>
 
-
 ---
-<!-- ABOUT --> 
-<a name="about"></a>
+<!-- PROJECT OVERVIEW --> 
+<a name="project overview"></a>
+## Project Overview
+   * Build Python code that creates metrics from medical claims
+   * Deploy this code to a Lambda function
+   * Enable access through an API Gateway
+<br/>
 
-## About
-What will we do?
-   1) Build Python code that creates metrics from medical and pharmacy claims.
-   2) Deploy this code to a Lambda function
-   3) Enable access through an API Gateway
-
+<!-- LEARNING CONCEPTS --> 
+<a name="learning concepts"></a>
+## Learning Concepts
+   * Python - Process medical claims to create and return metrics
+   * Healthcare Concepts - Types of Billing (Institutional/Hospital vs Professional/Physician), Types of Codes (Revenue vs Procedure vs Diagnosis)
+      * Revenue codes are used on hospital bills to tell the payers (e.g. insurance companies) where the patient was when they received treatment (e.g. room and board)
+      * Procedure codes (e.g CPT codes) are used by healthcare providers to describe the services they provided to the insurance companies for payment. 
+      * Diagnosis codes (e.g. DRGs) describe the patient's medical condition and are required on claims submitted by healthcare professionals to the payers.
+   * REST APIs - What are they and how can we interact with them?
+   * JSON - Build a JSON structure for medical claims / Return a JSON structure with metrics
+   * AWS (Lambda & API Gateway) - Set up a Lambda function and API Gateway in AWS 
 <br/>
 
 <!-- CONTAINER --> 
 <a name="test-data"></a>
-
 ## Test Data
-Test data consists of 9 randomly selected members and associated Facility (I), Professional (P), and Pharmacy (R) claims.  
+Test data consists of 9 members and their associated Facility (I), Professional (P), and Pharmacy (R) claims.
 
 | member\_id | claimtype | clm\_cnt | line\_cnt |
 | :--- | :--- | :--- | :--- |
@@ -49,12 +58,11 @@ Test data consists of 9 randomly selected members and associated Facility (I), P
 | mbr_03 | P | 15 | 2 |
 
 
-*note:*
-- The test data can be found here: lambda_project_dummy_data.json
+*Note: The test data can be found in test data folder and is called 'lambda_project_dummy_data.json'*
 
 <br/>
 
-*partial example of lambda_project_dummy_data.json:*
+* Partial example of lambda_project_dummy_data.json file:*
 ```
 {
     "contents":[
@@ -160,8 +168,6 @@ Test data consists of 9 randomly selected members and associated Facility (I), P
 ...
 ```
 
-
-
 <br/><br/>
 
 
@@ -178,8 +184,8 @@ Test data consists of 9 randomly selected members and associated Facility (I), P
 
 
 <!-- CREDITS or ACKNOWLEDGEMENTS -->
-<a name="credits"></a>
+<a name="credits and Acknowledgements"></a>
 
 ## Credits
-Huge thank you to Rich King and Gary Cattabriga for their guidance through this project.                   			                          	    |
-<br/><br/>
+Want to give the BIGGEST THANK YOU to [Rich King](https://www.linkedin.com/in/richwking/) and [Gary Cattabriga](https://www.linkedin.com/in/gcattabriga/) for their guidance through this project.
+<br/>
