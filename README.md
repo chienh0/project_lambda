@@ -15,39 +15,45 @@ Date: 2022.07.20
 
 <!-- The menu links to the various readme sections. Make these whatever works for your project -->      
 <p align="center">
-  <a href="#project overview">Project Overview</a> •  
-  <a href="learning concepts">Learning Concepts</a> •  
+  <a href="#project-overview">Project Overview</a> •  
+  <a href="#learning-concepts">Learning Concepts</a> •  
   <a href="#test-data">Test Data</a> •  
   <a href="#code">Code</a> •
+  <a href="#aws-architecture">AWS Architecture</a> •
   <a href="#credits">Credits</a> •
 </p>
 
 ---
 <!-- PROJECT OVERVIEW --> 
-<a name="project overview"></a>
+<a name="project-overview"></a>
 ## Project Overview
-   * Build Python code that creates metrics from medical claims
-   * Deploy this code to a Lambda function
-   * Enable access through an API Gateway
+   1) Build Python code that creates metrics from medical claims
+   2) Deploy this code to a Lambda function
+   3) Enable access through an API Gateway
+
 <br/>
 
 <!-- LEARNING CONCEPTS --> 
-<a name="learning concepts"></a>
+<a name="learning-concepts"></a>
 ## Learning Concepts
    * Python - Process medical claims to create and return metrics
+      * To start, we're going to identify [inpatient admissions](https://info.medinsight.milliman.com/2016/09/methodology-for-identifying-inpatient-admission-events/) and calculate corresponding length of stay.
    * Healthcare Concepts - Types of Billing (Institutional/Hospital vs Professional/Physician), Types of Codes (Revenue vs Procedure vs Diagnosis)
-      * Revenue codes are used on hospital bills to tell the payers (e.g. insurance companies) where the patient was when they received treatment (e.g. room and board)
+      * Revenue codes are used on hospital bills to tell the payers (e.g. insurance companies) where the patient was when they received treatment (e.g. room and board).
       * Procedure codes (e.g CPT codes) are used by healthcare providers to describe the services they provided to the insurance companies for payment. 
       * Diagnosis codes (e.g. DRGs) describe the patient's medical condition and are required on claims submitted by healthcare professionals to the payers.
    * REST APIs - What are they and how can we interact with them?
    * JSON - Build a JSON structure for medical claims / Return a JSON structure with metrics
    * AWS (Lambda & API Gateway) - Set up a Lambda function and API Gateway in AWS 
+      *  AWS Lambda is a serverless, event-driven compute service that lets you run code for virtually any type of application or backend service without provisioning or managing servers. 
+      * Amazon API Gateway is a fully managed service to create, publish, maintain, monitor, and secure APIs at any scale. APIs act as the "front door" for applications to access data, business logic, or functionality from your backend services.
+
 <br/>
 
-<!-- CONTAINER --> 
+<!-- TEST DATA --> 
 <a name="test-data"></a>
 ## Test Data
-Test data consists of 9 members and their associated Facility (I), Professional (P), and Pharmacy (R) claims.
+Test data consists of nine members and their associated Facility (I), Professional (P), and Pharmacy (R) claims.
 
 | member\_id | claimtype | clm\_cnt | line\_cnt |
 | :--- | :--- | :--- | :--- |
@@ -58,11 +64,11 @@ Test data consists of 9 members and their associated Facility (I), Professional 
 | mbr_03 | P | 15 | 2 |
 
 
-*Note: The test data can be found in test data folder and is called 'lambda_project_dummy_data.json'*
+*Note: The test data, called 'lambda_project_dummy_data.json', can be found in [test data](https://github.com/chienqho/project_lambda/tree/main/test_data) folder*
 
 <br/>
 
-* Partial example of lambda_project_dummy_data.json file:*
+*Partial example of the test data JSON file:*
 ```
 {
     "contents":[
@@ -168,24 +174,29 @@ Test data consists of 9 members and their associated Facility (I), Professional 
 ...
 ```
 
-<br/><br/>
+<br/>
 
-
-
-<!-- Build Schema and Initialize --> 
+<!-- CODE --> 
 <a name="code"></a>
-
 ## Code
+[Python code](https://github.com/chienqho/project_lambda/blob/main/querying-json.py) can also be viewed as a [juypter notebook](https://github.com/chienqho/project_lambda/blob/main/querying-json.ipynb).
 
 
+<br/>
 
-<br/><br/>
+<!-- ARCHITECTURE --> 
+<a name="aws-architecture"></a>
+## AWS Architecture
+   1) Set up a Lambda function in AWS Deploy our Python code 
+   2) Create and configure an API Gateway to invoke our Lambda function 
+   3) Implement access control (API Key) to prevent unauthorized access 
+   4) Test our work
 
-
+<br/>
 
 <!-- CREDITS or ACKNOWLEDGEMENTS -->
 <a name="credits and Acknowledgements"></a>
 
 ## Credits
-Want to give the BIGGEST THANK YOU to [Rich King](https://www.linkedin.com/in/richwking/) and [Gary Cattabriga](https://www.linkedin.com/in/gcattabriga/) for their guidance through this project.
+Giving the BIGGEST THANK YOU to [Rich King](https://www.linkedin.com/in/richwking/) and [Gary Cattabriga](https://www.linkedin.com/in/gcattabriga/) for their guidance through this project and for always being there when I had questions.
 <br/>
