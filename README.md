@@ -20,6 +20,7 @@ Date: 2022.07.20
   <a href="#test-data">Test Data</a> •  
   <a href="#code">Code</a> •
   <a href="#aws-architecture">AWS Architecture</a> •
+  <a href="#api-output">API Output</a> •
   <a href="#credits">Credits</a> •
 </p>
 
@@ -181,7 +182,6 @@ Test data consists of nine members and their associated Facility (I), Profession
 ## Code
 [Python code](https://github.com/chienqho/project_lambda/blob/main/querying-json.py) can also be viewed as a [juypter notebook](https://github.com/chienqho/project_lambda/blob/main/querying-json.ipynb).
 
-
 <br/>
 
 <!-- ARCHITECTURE --> 
@@ -194,8 +194,16 @@ Test data consists of nine members and their associated Facility (I), Profession
 
 <br/>
 
-<!-- CREDITS or ACKNOWLEDGEMENTS -->
-<a name="credits and Acknowledgements"></a>
+<!-- API OUTPUT --> 
+<a name="api-output"></a>
+## API Output
+Enter the following in terminal to access API output:
+```
+$ curl -X GET https://3lrj8ubm6e.execute-api.us-west-1.amazonaws.com/default/metrics -H 'x-api-key: feoKP2EInRai02yPy3ojs8b8t77ViLaz7ojPAi7c'
+```
+
+<!-- CREDITS -->
+<a name="credits"></a>
 
 ## Credits
 Giving the BIGGEST THANK YOU to [Rich King](https://www.linkedin.com/in/richwking/) and [Gary Cattabriga](https://www.linkedin.com/in/gcattabriga/) for their guidance through this project and for always being there when I had questions.
