@@ -256,7 +256,7 @@ class JsonHash:
 
         return _all_keys
 
-    def inpatient_admission(self):
+    def identify_inpatient_admission(self):
         '''
         Find the intersection of keys in the results object for an inpatient admission
         
@@ -328,4 +328,4 @@ if __name__ == '__main__':
     table = JsonHash(members, p_sparse=True)
 
     # find members with an inpatient admission
-    table.inpatient_admission()
+    print(table.identify_inpatient_admission())
