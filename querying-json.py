@@ -48,7 +48,7 @@ class JsonHash:
 
     def hash_json(self, p_dictionary, p_parent_key=False, p_sparse=False):
         '''
-        Gary's awesome JSON hashing function
+        JSON hashing function
         '''
         _items = []
         for _key, _value in p_dictionary.items():
@@ -256,6 +256,39 @@ class JsonHash:
 
         return _all_keys
 
+    def inpatient_admission(self):
+        '''
+        Find the intersection of keys in the results object for an inpatient admission
+        
+        '''
+        # define search values
+        search_values = {
+            'claim_type': ['I'],
+            'type_of_bill': [str(i).zfill(4) for i in range(110, 130)], 
+            'revenue_code': [str(i).zfill(4) for i in range(100, 220)] + [str(i).zfill(4) for i in range(1000, 1010)]}
+
+        # obtain _results_dict from find_and method
+        _results_dict = self.find_and(search_values)
+
+        # initialize empty list for all members
+        _members = []
+
+        for key, value in _results_dict.items():
+            if key == 'claim':
+                for v in value: 
+                    # initialize dictionary for each member
+                    _member = {}
+                    # create desired key-value pairs
+                    _member['member_id'] = table.hash_table[(v[:10]) + '.member_id']
+                    _member['member_age'] = table.hash_table[(v[:10]) + '.member_age']
+                    _member['admission_date'] = table.hash_table[v + '.admission_date']
+                    _member['discharge_date'] = table.hash_table[v + '.discharge_date']
+                    _member['principle_diagnosis'] = table.hash_table[v + '.principle_diagnosis']
+                    # link member-specific dictionary to initialized list
+                    _members.append(_member)
+
+        return _members
+
     def from_keys(self, values):
         '''
         values: list of values to search hash table for
@@ -294,36 +327,5 @@ if __name__ == '__main__':
 
     table = JsonHash(members, p_sparse=True)
 
-    inpatient_search_criteria = {
-        'claim_type': ['I'],
-        'type_of_bill': [str(i).zfill(4) for i in range(110, 130)], 
-        'revenue_code': [str(i).zfill(4) for i in range(100, 220)] + [str(i).zfill(4) for i in range(1000, 1010)]
-        }
-
-    inpatient_results = table.find_and(inpatient_search_criteria)
-
-    _api_output = {
-        'member_id': [],
-        'member_age': [],
-        'admission_date': [],
-        'discharge_date': [],
-        'principle_diagnosis': []
-        }
-
-    for key, values in inpatient_results.items():
-        if key == 'member':
-            for v in values:
-                # Include member_id 
-                _api_output['member_id'].append(table.hash_table[v + '.member_id'])
-                # Include member_age 
-                _api_output['member_age'].append(table.hash_table[v + '.member_age'])
-        if key == 'claim':
-            for v in values:
-                # Include admission_date
-                _api_output['admission_date'].append(table.hash_table[v + '.admission_date'])
-                # Include discharge_date
-                _api_output['discharge_date'].append(table.hash_table[v + '.discharge_date'])
-                # Include principle_diagnosis
-                _api_output['principle_diagnosis'].append(table.hash_table[v + '.principle_diagnosis'])
-    
-    print(_api_output)
+    # find members with an inpatient admission
+    table.inpatient_admission()
