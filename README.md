@@ -40,9 +40,9 @@ Date: 2022.07.20
    * Python - Process medical claims to create and return metrics
       * To start, we're going to identify [inpatient admissions](https://info.medinsight.milliman.com/2016/09/methodology-for-identifying-inpatient-admission-events/) and calculate corresponding length of stay.
    * Healthcare Concepts - Types of Billing (Institutional/Hospital vs Professional/Physician), Types of Codes (Revenue vs Procedure vs Diagnosis)
-      * Revenue codes are used on hospital bills to tell the payers (e.g. insurance companies) where the patient was when they received treatment (e.g. room and board).
+      * Revenue codes are used on hospital bills to tell the payers (e.g. insurance companies) either where the patient was when they received treatment, or what type of item a patient might have received as a patient.
       * Procedure codes (e.g CPT codes) are used by healthcare providers to describe the services they provided to the insurance companies for payment. 
-      * Diagnosis codes (e.g. DRGs) describe the patient's medical condition and are required on claims submitted by healthcare professionals to the payers.
+      * Diagnosis codes (e.g. ICD-10 codes) describe the patient's medical condition and are required on claims submitted by healthcare professionals to the payers.
    * REST APIs - What are they and how can we interact with them?
    * JSON - Build a JSON structure for medical claims / Return a JSON structure with metrics
    * AWS (Lambda & API Gateway) - Set up a Lambda function and API Gateway in AWS 
