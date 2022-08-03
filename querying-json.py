@@ -256,39 +256,6 @@ class JsonHash:
 
         return _all_keys
 
-    def identify_inpatient_admission(self):
-        '''
-        Find the intersection of keys in the results object for an inpatient admission
-        
-        '''
-        # define search values
-        search_values = {
-            'claim_type': ['I'],
-            'type_of_bill': [str(i).zfill(4) for i in range(110, 130)], 
-            'revenue_code': [str(i).zfill(4) for i in range(100, 220)] + [str(i).zfill(4) for i in range(1000, 1010)]}
-
-        # obtain _results_dict from find_and method
-        _results_dict = self.find_and(search_values)
-
-        # initialize empty list for all members
-        _members = []
-
-        for key, value in _results_dict.items():
-            if key == 'claim':
-                for v in value: 
-                    # initialize dictionary for each member
-                    _member = {}
-                    # create desired key-value pairs
-                    _member['member_id'] = table.hash_table[(v[:10]) + '.member_id']
-                    _member['member_age'] = table.hash_table[(v[:10]) + '.member_age']
-                    _member['admission_date'] = table.hash_table[v + '.admission_date']
-                    _member['discharge_date'] = table.hash_table[v + '.discharge_date']
-                    _member['principle_diagnosis'] = table.hash_table[v + '.principle_diagnosis']
-                    # link member-specific dictionary to initialized list
-                    _members.append(_member)
-
-        return _members
-
     def from_keys(self, values):
         '''
         values: list of values to search hash table for
@@ -318,14 +285,41 @@ class JsonHash:
                 _results.append({_new_key: self.hash_table[_new_key]})
         return _results
 
-if __name__ == '__main__':
-    # Parameterize code
-    data_path_parameter = sys.argv[1]
+def identify_inpatient_admission(json_data):
+    '''
+    Find the intersection of keys in the results object containing an inpatient admission
+    '''
+    # define search values
+    search_values_inpatient_admission = {
+        'claim_type': ['I'],
+        'type_of_bill': [str(i).zfill(4) for i in range(110, 130)], 
+        'revenue_code': [str(i).zfill(4) for i in range(100, 220)] + [str(i).zfill(4) for i in range(1000, 1010)]}
+    # obtain results dict from find_and method
+    _find_and_results_dict = json_data.find_and(search_values_inpatient_admission)
+    # initialize empty list for all members
+    _members_list = []
+    for key, value in _find_and_results_dict.items():
+        if key == 'claim':
+            for v in value: 
+                # initialize dictionary for each member
+                _individual_member_dict = {}
+                # create desired key-value pairs
+                _individual_member_dict['member_id'] = table.hash_table[(v[:10]) + '.member_id']
+                _individual_member_dict['member_age'] = table.hash_table[(v[:10]) + '.member_age']
+                _individual_member_dict['admission_date'] = table.hash_table[v + '.admission_date']
+                _individual_member_dict['discharge_date'] = table.hash_table[v + '.discharge_date']
+                _individual_member_dict['principle_diagnosis'] = table.hash_table[v + '.principle_diagnosis']
+                # link member-specific dictionary to initialized list
+                _members_list.append(_individual_member_dict)
+    return _members_list
 
+if __name__ == '__main__':
+    # parameterize code
+    data_path_parameter = sys.argv[1]
+    # read in test data
     with open(data_path_parameter, 'r') as f:
         members = json.load(f)
-
+    # transform test data to hash table
     table = JsonHash(members, p_sparse=True)
-
     # find members with an inpatient admission
-    print(table.identify_inpatient_admission())
+    print(identify_inpatient_admission(table))
